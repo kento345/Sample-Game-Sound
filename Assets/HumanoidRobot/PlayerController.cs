@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float Speed = 5.0f;
     [SerializeField] private float runSpeed = 10.0f;
     private float curentSpeed = 0.0f;
+    Vector3 moveVec;
 
     //-----ƒWƒƒƒ“ƒv-----
     [SerializeField] private float jumpForce = 5.0f;
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
         inputVer = context.ReadValue<Vector2>();
     }
 
-    public void Sprint(InputAction.CallbackContext context)
+    public void OnSprint(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -45,11 +47,11 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && isGround)
         {
-            rb.AddForce(Vector3.up * jumpForce,ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             isGround = false;
         }
-    } 
+    }
     public void OnLook(InputAction.CallbackContext context)
     {
         inputlook = context.ReadValue<Vector2>();
@@ -86,9 +88,11 @@ public class PlayerController : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        Vector3 move = (forward * inputVer.y + right * inputVer.x) * curentSpeed * Time.deltaTime;
+        moveVec = Vector3.Scale(forward, new Vector3(1, 0, 1));
 
-        rb.MovePosition(rb.position + move);
+        moveVec = (forward * inputVer.y + right * inputVer.x) * curentSpeed * Time.deltaTime;
+
+        rb.MovePosition(rb.position + moveVec);
     }
 
     void CamereMove()
@@ -98,11 +102,12 @@ public class PlayerController : MonoBehaviour
 
         pitch -= mouseY;
         pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
-        cam.transform.localRotation = Quaternion.Euler(pitch,0.0f,0.0f);
+        cam.transform.localRotation = Quaternion.Euler(pitch, 0.0f, 0.0f);
 
         transform.Rotate(Vector3.up * mouseX);
     }
     
+
     private void OnCollisionEnter(Collision collision)
     {
         if (((1 << collision.gameObject.layer) & groundLayer) != 0)
