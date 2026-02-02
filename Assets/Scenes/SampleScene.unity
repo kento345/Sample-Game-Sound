@@ -397,12 +397,20 @@ PrefabInstance:
       value: OnJump
       objectReference: {fileID: 0}
     - target: {fileID: 6573152748416380563, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573152748416380563, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RobotController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6573152748416380563, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RobotController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573152748416380563, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6573152748416380563, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -417,8 +425,24 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7424654950462977900, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424654950462977900, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1
+      value: -1.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424654950462977900, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96951073
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424654950462977900, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.24504903
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424654950462977900, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 28.369
       objectReference: {fileID: 0}
     - target: {fileID: 8462385362721844324, guid: a220cf7c6eb264fd1989ece3dd7512e4, type: 3}
       propertyPath: m_Name

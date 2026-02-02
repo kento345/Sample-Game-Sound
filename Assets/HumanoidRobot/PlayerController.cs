@@ -24,7 +24,11 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 inputVer, inputlook;
 
+    //-----ÉAÉjÉÅÅ]ÉVÉáÉì
+    bool isRun  = false;
+
     Rigidbody rb;
+    Animator animator;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -35,10 +39,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
+            isRun = true;
             curentSpeed = runSpeed;
         }
         if (context.canceled)
         {
+            isRun = false;
             curentSpeed = Speed;
         }
     }
@@ -48,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed && isGround)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
+            animator.SetTrigger("IsJump");
             isGround = false;
         }
     }
@@ -69,12 +75,19 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         cam = GetComponentInChildren<Camera>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
         Move();
         CamereMove();
+
+        float mag = inputVer.magnitude;
+        animator.SetFloat("Speed",mag);
+        animator.SetBool("IsRun",isRun);
+        animator.SetBool("IsAir",isGround);
+  
     }
 
     void Move()
