@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : MonoBehaviour
 {
     private PlayerStateManager stateManager;
-    private PlayerMove move;
+    private MoveController move;
+    private AtackController atack;
 
     private void Awake()
     {
         stateManager = GetComponent<PlayerStateManager>();
-        move = GetComponent<PlayerMove>();
+        move = GetComponent<MoveController>();
+        atack = GetComponent<AtackController>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -25,14 +27,14 @@ public class PlayerInputController : MonoBehaviour
     public void OnAtatck(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {   
-            //チャージ開始,ステート変更
-            stateManager.SetActionState(ActionState.Charge);
+        {
+            atack.Shot(1);
+           
         }
         if (context.canceled)
         {
-            //チャージを止め攻撃,ステート変更
-            stateManager.SetActionState(ActionState.Attack);
+            atack.Shot(2);
+           
         }
     }
 }

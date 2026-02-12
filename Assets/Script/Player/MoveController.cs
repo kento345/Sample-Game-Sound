@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class PlayerMove : MonoBehaviour
+public class MoveController : MonoBehaviour
 {
     [Header("à⁄ìÆê›íË")]
     [SerializeField] private float Speed = 5.0f;
     private float Speed2 = 0f;
-    [SerializeField] private float chargingmoveSpeedRate = 2.0f;
+    [SerializeField] private float chargingmoveSpeedRate = 0.3f;
     private float curentSpeed = 0f;
 
     [SerializeField] private float rotSpeed = 10.0f;
@@ -43,30 +43,35 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        stateManager.UpdateMoveState(inputVer);
         Move();
     }
 
     public void Move()
     {
-        if (stateManager.MoveState != MoveState.Walk) { return; }
+        if (stateManager.MoveState == MoveState.Idle) { return; }
+       
         if (stateManager.ActionState == ActionState.Charge)
         {
             curentSpeed = Speed2;
             curentRotSpeed = rotSpeed2;
         }
-        else
+        else if(stateManager.ActionState == ActionState.Attack || stateManager.ActionState == ActionState.None)
         {
             curentSpeed = Speed;
             curentRotSpeed = rotSpeed;
         }
 
-        Vector3 move = new Vector3(inputVer.x, 0, inputVer.y) * curentSpeed * Time.deltaTime;
-        rb.MovePosition(rb.position + move);
-
-        if(move != Vector3.zero)
+        if (stateManager.ActionState != ActionState.Attack)
         {
-            Quaternion Rot = Quaternion.LookRotation(move, Vector3.up);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation,Rot,curentRotSpeed * Time.deltaTime));
+            Vector3 move = new Vector3(inputVer.x, 0, inputVer.y) * curentSpeed * Time.deltaTime;
+            rb.MovePosition(rb.position + move);
+
+            if (move != Vector3.zero)
+            {
+                Quaternion Rot = Quaternion.LookRotation(move, Vector3.up);
+                rb.MoveRotation(Quaternion.Slerp(rb.rotation, Rot, curentRotSpeed * Time.deltaTime));
+            }
         }
     }
 }
