@@ -120,16 +120,17 @@ public class AtackController : MonoBehaviour
 
             if (target_angle <= angle)
             {
-                if (Physics.Raycast(this.transform.position + Vector3.up * 1.2f, posDir, out RaycastHit hit))
+                if (Physics.Raycast(this.transform.position + Vector3.up * 0.5f, posDir, out RaycastHit hit))
                 {
                     if (hit.collider == other)
                     {
+                        Debug.Log("Hit");
                         if (stateManager.ActionState == ActionState.Attack)
                         {
                             Reception p = other.gameObject.GetComponent<Reception>();
                             //if (p.isHit) { return; }
                             p.KnockBack(rb.linearVelocity.normalized, curentknockbackForce);
-
+                            Debug.Log("攻撃Hit");
                             //当たった時点でInvokeをキャンセルしてタックルを止める
                             CancelInvoke("EndAttack");
                             EndAttack();
