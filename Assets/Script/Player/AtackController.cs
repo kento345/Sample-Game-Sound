@@ -31,6 +31,7 @@ public class AtackController : MonoBehaviour
 
     Rigidbody rb;
     PlayerStateManager stateManager;
+   
 
     private void Start()
     {
@@ -123,12 +124,11 @@ public class AtackController : MonoBehaviour
                 {
                     if (hit.collider == other)
                     {
-                        if (stateManager.ActionState == ActionState.Charge)
+                        if (stateManager.ActionState == ActionState.Attack)
                         {
-                           /* Reception p = other.gameObject.GetComponent<Reception>();
-                            if (p.isHit) { return; }
-                            p.KnockBack(rb.linearVelocity.normalized, curentknockbackForce);*/
-
+                            Reception p = other.gameObject.GetComponent<Reception>();
+                            //if (p.isHit) { return; }
+                            p.KnockBack(rb.linearVelocity.normalized, curentknockbackForce);
 
                             //当たった時点でInvokeをキャンセルしてタックルを止める
                             CancelInvoke("EndAttack");

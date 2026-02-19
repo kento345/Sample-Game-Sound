@@ -253,15 +253,15 @@ GameObject:
   - component: {fileID: 563291822}
   - component: {fileID: 563291821}
   - component: {fileID: 563291825}
-  - component: {fileID: 563291827}
   - component: {fileID: 563291826}
+  - component: {fileID: 563291827}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &563291821
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -378,7 +378,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &563291826
 MonoBehaviour:
@@ -387,18 +387,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563291820}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d74cf065567fd5449a92b220c44d817f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c5a1880899cbca46aa747d327cad0bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curentForce: 0
-  lastTime: 0
-  chargeMax: 5
-  WeakKnockbackForce: 2.5
-  StrongKnockbackForce: 5
-  searchArea: {fileID: 0}
-  angle: 45
+  StunInvincibleTime: 1
 --- !u!114 &563291827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,15 +400,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563291820}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8d5a30cad425a64ba18d8697d3c18e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 0464244499b71c540b1c5540cb1f643e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
-  chargingmoveSpeedRate: 2
-  rotSpeed: 10
-  ChargeingRotSpeedRate: 0.7
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +470,7 @@ GameObject:
   - component: {fileID: 1439293809}
   - component: {fileID: 1439293808}
   - component: {fileID: 1439293812}
+  - component: {fileID: 1439293813}
   - component: {fileID: 1439293803}
   - component: {fileID: 1439293807}
   m_Layer: 0
@@ -574,7 +565,7 @@ Transform:
   m_GameObject: {fileID: 1439293802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -7.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -797,10 +788,23 @@ MonoBehaviour:
   curentForce: 15
   lastTime: 0
   chargeMax: 5
-  WeakKnockbackForce: 2.5
-  StrongKnockbackForce: 5
+  WeakKnockbackForce: 15
+  StrongKnockbackForce: 30
   searchArea: {fileID: 1969406295}
   angle: 45
+--- !u!114 &1439293813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439293802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5a1880899cbca46aa747d327cad0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StunInvincibleTime: 1
 --- !u!1 &1698416642
 GameObject:
   m_ObjectHideFlags: 0
